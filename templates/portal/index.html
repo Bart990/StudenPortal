@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="row">
+  <!-- Левая колонка: календарь Google -->
+  <div class="col-lg-8 mb-4">
+    <iframe
+      src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FMoscow"
+      style="border:0" width="100%" height="600" frameborder="0" scrolling="no">
+    </iframe>
+  </div>
+
+  <!-- Правая колонка: ближайшие мероприятия -->
+  <div class="col-lg-4">
+    <h4 class="mb-3">Ближайшие мероприятия</h4>
+    {% for ev in upcoming %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ ev.title }}</h5>
+          <p class="card-text text-muted">
+            {{ ev.start_time|date:"d E Y, H:i" }}
+          </p>
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'portal:event_detail' ev.id %}">
+            Подробнее
+          </a>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">Скоро здесь появятся мероприятия.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Новости — Портал{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Все новости</h1>
+
+{% for n in news_list %}
+  <article class="mb-4 p-3 bg-white border rounded shadow-sm">
+    <h4 class="mb-1">
+      <a href="{% url 'portal:news_detail' n.pk %}" class="link-dark text-decoration-none">
+        {{ n.title }}
+      </a>
+    </h4>
+    <p class="small text-muted mb-2">{{ n.published|date:"d.m.Y H:i" }}</p>
+    <p class="mb-0">{{ n.body|truncatewords:50 }}</p>
+  </article>
+{% empty %}
+  <p class="text-muted">Новостей пока нет.</p>
+{% endfor %}
+{% endblock %}

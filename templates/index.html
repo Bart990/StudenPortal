@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="row">
+
+  <!-- колонка с Google-календарём -->
+  <div class="col-lg-8 mb-4">
+    <div class="ratio ratio-16x9 border rounded">
+      <!-- публичный календарь; подставь свой ID, если нужно -->
+      <iframe
+        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FMoscow&showTitle=0&showPrint=0&showTabs=0&src=ru.russian%23holiday%40group.v.calendar.google.com&color=%230B8043"
+        style="border:0" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- колонка новостей -->
+  <div class="col-lg-4">
+    <h4 class="mb-3">Последние новости</h4>
+    {% for n in news_list %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h6 class="card-title mb-1">
+            <a href="{% url 'portal:news_detail' n.pk %}">{{ n.title }}</a>
+          </h6>
+          <p class="card-text small text-muted">{{ n.published|date:"d.m.Y H:i" }}</p>
+        </div>
+      </div>
+    {% empty %}
+      <p>Новостей пока нет.</p>
+    {% endfor %}
+    <a class="btn btn-outline-primary w-100 mt-3" href="{% url 'portal:news' %}">Все новости</a>
+  </div>
+
+</div>
+{% endblock %}

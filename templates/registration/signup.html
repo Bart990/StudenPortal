@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 480px;">
+  <h2 class="mb-4 text-center">Регистрация</h2>
+
+  {# показываем ошибки формы #}
+  {% if form.errors %}
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    <div class="mb-3">
+      {{ form.username.label_tag }}
+      {{ form.username|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.email.label_tag }}
+      {{ form.email|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.password1.label_tag }}
+      {{ form.password1|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.password2.label_tag }}
+      {{ form.password2|add_class:"form-control" }}
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">
+      Зарегистрироваться
+    </button>
+  </form>
+
+  <hr class="my-4">
+  <p class="text-center small">
+    Уже есть аккаунт?
+    <a href="{% url 'portal:login' %}">Войти</a>
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+/* оттенки корпоративного (пример) */
+:root {
+  --primary: #0066ff;
+  --primary-light: #e6f0ff;
+}
+
+body {
+  background: var(--primary-light);
+}
+
+.navbar-brand {
+  font-weight: 600;
+}
+
+.card-hover:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15);
+  transform: translateY(-2px);
+  transition: all .2s;
+}
