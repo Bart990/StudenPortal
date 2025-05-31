@@ -1,12 +1,12 @@
 # .github/workflows/deploy.yml
-name: CI + Deploy
+name: CI & Deploy
 
-on:
+on:                  # триггер — push в main
   push:
     branches: [ main ]
 
 jobs:
-  test:
+  test:              # 1-й job: тесты
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,29 +15,39 @@ jobs:
       - run: pip install -r requirements.txt
       - run: pytest
 
-  deploy:
-    needs: test               # выполнится только если test ✅
+  deploy:            # 2-й job: выкладка
+    needs: test
     runs-on: ubuntu-latest
+    env:
+      HOST: ${{ secrets.HOST }}
+      USER: ${{ secrets.SSH_USER }}
+      KEY:  ${{ secrets.SSH_KEY }}
+      SERVICE: ${{ secrets.SERVICE_NAME }}
     steps:
       - uses: actions/checkout@v4
-      - name: Copy sources to VPS
-        uses: appleboy/scp-action@v0.1.1
+
+      # копируем проект (инкрементально, без лишних файлов)
+      - name: Upload code to VPS
+        uses: appleboy/scp-action@v0.1.1  # :contentReference[oaicite:0]{index=0}
         with:
-          host:   ${{ secrets.HOST }}
-          username: portal
-          key:     ${{ secrets.SSH_KEY }}
+          host: ${{ env.HOST }}
+          username: ${{ env.USER }}
+          key: ${{ env.KEY }}
           source: "."
           target: "/opt/portal"
-      - name: SSH → мигрируем и перезапускаем
+          strip_components: 1             # не создаёт лишнюю папку
+
+      # выполняем команды внутри VPS
+      - name: SSH – migrate & restart
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host:   ${{ secrets.HOST }}
-          username: portal
-          key:     ${{ secrets.SSH_KEY }}
+          host: ${{ env.HOST }}
+          username: ${{ env.USER }}
+          key: ${{ env.KEY }}
           script: |
-            cd /opt/portal &&
-            source venv/bin/activate &&
-            pip install -r requirements.txt &&
-            python manage.py migrate &&
-            python manage.py collectstatic --noinput &&
-            sudo systemctl restart portal
+            cd /opt/portal
+            source venv/bin/activate
+            pip install -r requirements.txt
+            python manage.py migrate --noinput
+            python manage.py collectstatic --noinput
+            sudo systemctl restart $SERVICE
