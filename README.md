@@ -39,7 +39,7 @@
 ### Windows / macOS / Linux (ручной способ)
 
 ```bash
-git clone https://github.com/your-nickname/student_portal.git
+git clone https://github.com/Bart990/StudenPortal.git
 cd student_portal
 
 python -m venv .venv
