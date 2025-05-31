@@ -9,11 +9,11 @@ urlpatterns = [
     path("", views.index, name="home"),
 
     # ─── пять пустых страниц
-    path("page1/", views.page1, name="page1"),
-    path("page2/", views.page2, name="page2"),
-    path("page3/", views.page3, name="page3"),
-    path("page4/", views.page4, name="page4"),
-    path("page5/", views.page5, name="page5"),
+    path("history/", views.page1, name="page1"),
+    path("studsov/", views.page2, name="page2"),
+    path("contactpriem/", views.page3, name="page3"),
+    path("capitans/", views.page4, name="page4"),
+    path("plechanovka/", views.page5, name="page5"),
 
     # ─── новости
     path("news/", views.NewsListView.as_view(),      name="news"),

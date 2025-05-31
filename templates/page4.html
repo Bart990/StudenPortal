@@ -1,18 +1,37 @@
 {% extends "base.html" %}
-
-{% block title %}
-  {{ title }}
-{% endblock %}
+{% block title %}Факультет «КАПИТАНЫ»{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-  <h1 class="display-5 mb-4">{{ title }}</h1>
+  <h1 class="mb-4 text-center">Факультет «КАПИТАНЫ»</h1>
 
-  <p class="lead">
-    Эта страница пока в разработке :)
+  <p class="lead text-center">
+    Программа, направленная на формирование управленческих компетенций
+    и предпринимательского мышления.
   </p>
-  <a class="btn btn-outline-primary" href="{% url 'portal:home' %}">
-    ← На главную
-  </a>
+
+  <h4 class="mt-5">Основные направления деятельности</h4>
+  <ul class="list-group list-group-flush mb-4">
+    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Группа поддержки</li>
+    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Спорт</li>
+    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Ивент</li>
+    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Наука</li>
+    <li class="list-group-item"><i class="bi bi-check-circle-fill text-success me-2"></i>Медиа</li>
+  </ul>
+
+  <h4 class="mt-5">Ключевые проекты</h4>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Это моя Плехановка</li>
+    <li class="list-group-item">Прощание с кураторами</li>
+    <li class="list-group-item">Новый год</li>
+  </ul>
+
+  <div class="text-center mt-5">
+    <a class="btn btn-outline-primary"
+       href="https://www.rea.ru/structure/departments/upravlenie-po-sotsialno-vospitatelnoy-rabote/studencheskiy-sovet/studencheskie-sovetyi-vshfi/stud-sovet-captains"
+       target="_blank" rel="noopener">
+      Перейти к&nbsp;разделу факультета
+    </a>
+  </div>
 </div>
 {% endblock %}

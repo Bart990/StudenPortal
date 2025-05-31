@@ -1,18 +1,47 @@
 {% extends "base.html" %}
-
-{% block title %}
-  {{ title }}
-{% endblock %}
+{% block title %}Абитуриенту{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-  <h1 class="display-5 mb-4">{{ title }}</h1>
+<section class="container py-5">
+  <h1 class="mb-4 text-center">Контакты приёмной комиссии</h1>
 
-  <p class="lead">
-    Эта страница пока в разработке :)
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Телефоны</h5>
+          <p class="mb-2">
+            <a href="tel:+74958001200">+7&nbsp;(495)&nbsp;800-12-00</a>
+            <span class="text-muted">доб.&nbsp;23-11, 28-21</span>
+          </p>
+
+          <h5 class="card-title mt-4">E-mail</h5>
+          <p class="mb-2">
+            <a href="mailto:abiturient@rea.ru">abiturient@rea.ru</a>
+          </p>
+
+          <h5 class="card-title mt-4">Telegram-канал</h5>
+          <p class="mb-0">
+            <a class="btn btn-outline-info"
+               href="https://t.me/abiturient_reu" target="_blank" rel="noopener">
+              <i class="bi bi-telegram me-1"></i> @abiturient_reu
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-center mt-4">
+    Актуальную информацию о&nbsp;правилах приёма ищите на официальной странице приёмной комиссии.
   </p>
-  <a class="btn btn-outline-primary" href="{% url 'portal:home' %}">
-    ← На главную
-  </a>
-</div>
+
+  <div class="text-center">
+    <a class="btn btn-primary"
+       href="https://www.rea.ru/pk/entrant"
+       target="_blank" rel="noopener">
+      Перейти на pk.rea.ru
+    </a>
+  </div>
+</section>
 {% endblock %}

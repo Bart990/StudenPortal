@@ -1,18 +1,26 @@
 {% extends "base.html" %}
-
-{% block title %}
-  {{ title }}
-{% endblock %}
+{% block title %}История университета{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-  <h1 class="display-5 mb-4">{{ title }}</h1>
+<section class="bg-light py-5">
+  <div class="container">
+    <h1 class="mb-4 text-center">Более 100 лет развития и инноваций</h1>
 
-  <p class="lead">
-    Эта страница пока в разработке :)
-  </p>
-  <a class="btn btn-outline-primary" href="{% url 'portal:home' %}">
-    ← На главную
-  </a>
-</div>
+    <p class="lead">
+      Российский экономический университет имени&nbsp;Г.&nbsp;В.&nbsp;Плеханова ведёт свою
+      историю с 1907 года и на протяжении всего этого времени остаётся связующим звеном
+      между наукой и экономикой страны. Университет прошёл путь от первых коммерческих
+      курсов до ведущего экономического вуза России, активно участвуя в реформах,
+      исследовательских инициативах и подготовке кадров для разных отраслей экономики.
+    </p>
+
+    <div class="text-center mt-4">
+      <a class="btn btn-primary btn-lg"
+         href="https://www.rea.ru/education/ob-universitete/istoriya-universiteta"
+         target="_blank" rel="noopener">
+        Узнать больше на&nbsp;rea.ru
+      </a>
+    </div>
+  </div>
+</section>
 {% endblock %}

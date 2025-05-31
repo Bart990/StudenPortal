@@ -1,22 +1,59 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Контакты{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Контакты</h2>
+<div class="container py-4">
+  <h1 class="mb-4">Контакты</h1>
 
-<p class="mb-3">
-  По всем вопросам обращайтесь к студсовету Финансового факультета.
-</p>
+  <div class="row gy-4">
+    <!-- Левая колонка: телефоны и e-mail -->
+    <div class="col-12 col-md-6">
+      <h5 class="mb-2">Основной номер</h5>
+      <p class="mb-0">
+        <a href="tel:+74959582743">+7&nbsp;(495)&nbsp;958-27-43</a>
+      </p>
 
-<div class="d-flex gap-3">
-  <a href="https://vk.com/reusovet" target="_blank"
-     class="btn btn-outline-primary d-flex align-items-center">
-    <i class="bi bi-vk me-2 fs-4"></i> ВКонтакте
+      <h5 class="mt-4 mb-2">Приёмная комиссия</h5>
+      <p class="mb-0">
+        <a href="tel:+74958001200">+7&nbsp;(495)&nbsp;800-12-00</a>
+        <span class="text-muted">доб.&nbsp;28-21</span>
+      </p>
+
+      <h5 class="mt-4 mb-2">E-mail</h5>
+      <p class="mb-0">
+        <a href="mailto:rector@rea.ru">rector@rea.ru</a>
+      </p>
+    </div>
+
+    <!-- Правая колонка: адреса -->
+    <div class="col-12 col-md-6">
+      <h5 class="mb-2">Юридический адрес</h5>
+      <address class="mb-0">
+        115054, Москва,<br>
+        Стремянный переулок, д.&nbsp;36
+      </address>
+
+      <h5 class="mt-4 mb-2">Почтовый адрес</h5>
+      <address class="mb-0">
+        ОПС&nbsp;109992, Москва,<br>
+        Стремянный переулок, д.&nbsp;36<br>
+        тел.&nbsp;доб.&nbsp;1179
+      </address>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <h5 class="mb-3">Мы в соцсетях</h5>
+  <!-- ссылки на VK и Telegram — замените URL на актуальные -->
+  <a class="btn btn-outline-primary me-2"
+     href="https://vk.com/your_vk" target="_blank" rel="noopener">
+    <i class="bi bi-vk me-1"></i> VK
   </a>
-
-  <a href="https://t.me/ffm_sovetreu" target="_blank"
-     class="btn btn-outline-info d-flex align-items-center">
-    <i class="bi bi-telegram me-2 fs-4"></i> Telegram
+  <a class="btn btn-outline-info"
+     href="https://t.me/your_telegram" target="_blank" rel="noopener">
+    <i class="bi bi-telegram me-1"></i> Telegram
   </a>
 </div>
 {% endblock %}

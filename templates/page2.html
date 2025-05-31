@@ -1,18 +1,60 @@
 {% extends "base.html" %}
-
-{% block title %}
-  {{ title }}
-{% endblock %}
+{% block title %}Студенческий совет{% endblock %}
 
 {% block content %}
 <div class="container py-5">
-  <h1 class="display-5 mb-4">{{ title }}</h1>
+  <h1 class="mb-4 text-center">Студенческий совет РЭУ</h1>
 
-  <p class="lead">
-    Эта страница пока в разработке :)
+  <p class="text-center mb-5">
+    Студсовет объединяет активных студентов и координирует работу сразу по&nbsp;нескольким направлениям:
   </p>
-  <a class="btn btn-outline-primary" href="{% url 'portal:home' %}">
-    ← На главную
-  </a>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+    <div class="col"><div class="card h-100 shadow-sm">
+      <div class="card-body d-flex align-items-start">
+        <i class="bi bi-people-fill fs-2 text-primary me-3"></i>
+        <span>Социально-правовое направление</span>
+      </div></div></div>
+
+    <div class="col"><div class="card h-100 shadow-sm">
+      <div class="card-body d-flex align-items-start">
+        <i class="bi bi-people-fill fs-2 text-primary me-3"></i>
+        <span>Информационно-коммуникационное направление</span>
+      </div></div></div>
+
+    <div class="col"><div class="card h-100 shadow-sm">
+      <div class="card-body d-flex align-items-start">
+        <i class="bi bi-people-fill fs-2 text-primary me-3"></i>
+        <span>Культурно-массовое направление</span>
+      </div></div></div>
+
+    <div class="col"><div class="card h-100 shadow-sm">
+      <div class="card-body d-flex align-items-start">
+        <i class="bi bi-people-fill fs-2 text-primary me-3"></i>
+        <span>Спортивный комитет</span>
+      </div></div></div>
+
+    <div class="col"><div class="card h-100 shadow-sm">
+      <div class="card-body d-flex align-items-start">
+        <i class="bi bi-people-fill fs-2 text-primary me-3"></i>
+        <span>Студенческие клубы</span>
+      </div></div></div>
+
+    <div class="col"><div class="card h-100 shadow-sm">
+      <div class="card-body d-flex align-items-start">
+        <i class="bi bi-people-fill fs-2 text-primary me-3"></i>
+        <span>Проектный офис</span>
+      </div></div></div>
+
+  </div>
+
+  <div class="text-center mt-4">
+    <a class="btn btn-outline-primary"
+       href="https://www.rea.ru/structure/departments/upravlenie-po-sotsialno-vospitatelnoy-rabote/studencheskiy-sovet"
+       target="_blank" rel="noopener">
+      Подробно на сайте rea.ru
+    </a>
+  </div>
 </div>
 {% endblock %}

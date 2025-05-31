@@ -1,18 +1,44 @@
 {% extends "base.html" %}
-
-{% block title %}
-  {{ title }}
-{% endblock %}
+{% block title %}118&nbsp;лет Плехановскому университету{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-  <h1 class="display-5 mb-4">{{ title }}</h1>
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
 
-  <p class="lead">
-    Эта страница пока в разработке :)
-  </p>
-  <a class="btn btn-outline-primary" href="{% url 'portal:home' %}">
-    ← На главную
-  </a>
-</div>
+      <h1 class="mb-3 text-center">«Плехановка» — 118&nbsp;лет первого экономического вуза России</h1>
+      <p class="text-muted text-center">19&nbsp;февраля&nbsp;2025&nbsp;г.</p>
+
+      <p class="lead">
+        В&nbsp;день рождения университета вспоминаем путь от Высших коммерческих курсов
+        до крупнейшего управленческого вуза страны. «Плехановка» стала
+        первым высшим учебным заведением экономического профиля и&nbsp;продолжает
+        определять тренды отечественного бизнес-образования.
+      </p>
+
+      <div class="ratio ratio-16x9 mb-4">
+        <iframe src="https://www.youtube-nocookie.com/embed/Gj0KwGiZXb0"
+                title="Плехановка 118 лет" allowfullscreen></iframe>
+      </div>
+
+      <p class="text-center">
+        <a class="btn btn-primary"
+           href="https://www.rea.ru/news/53040-k-118-letiyu-plehanovskogo-universiteta-pervyiy-kommercheskiy-i-upravlencheskiy-vuz-rossii-"
+           target="_blank" rel="noopener">
+          Читать новость полностью
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Простая анимация появления заголовка -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const h1 = document.querySelector('h1');
+    h1.style.opacity = '0';
+    h1.style.transition = 'opacity 0.8s ease-in-out';
+    setTimeout(() => { h1.style.opacity = '1'; }, 100);
+  });
+</script>
 {% endblock %}
