@@ -7,15 +7,10 @@
   <p class="text-muted">{{ news.published|date:"d.m.Y H:i" }}</p>
   <hr>
 
-  {# выводим первое непустое поле: body / content / text / description #}
-  {% if news.body %}            {{ news.body|linebreaks }}
-  {% elif news.content %}       {{ news.content|linebreaks }}
-  {% elif news.text %}          {{ news.text|linebreaks }}
-  {% elif news.description %}   {{ news.description|linebreaks }}
-  {% else %}
-      <em>Нет текста.</em>
-  {% endif %}
+  {{ news.body|safe }}
 </article>
 
-<a class="btn btn-outline-primary" href="{% url 'portal:news' %}">← Все новости</a>
+<a class="btn btn-outline-primary" href="{% url 'portal:news' %}">
+  ← Все новости
+</a>
 {% endblock %}

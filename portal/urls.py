@@ -2,6 +2,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from . import views
+from .views import EventListView, EventDetailView
 
 app_name = "portal"
 
@@ -21,8 +22,8 @@ urlpatterns = [
     path("news/<int:pk>/", views.NewsDetailView.as_view(), name="news_detail"),
 
     # ─── мероприятия
-    path("events/", views.EventListView.as_view(),        name="events"),
-    path("event/<int:event_id>/", views.event_detail,     name="event_detail"),
+    path("events/", EventListView.as_view(), name="events"),
+    path("event/<int:pk>/", EventDetailView.as_view(), name="event_detail"),
 
     # ─── расписание
     path("schedule/", views.ScheduleView.as_view(), name="schedule"),
