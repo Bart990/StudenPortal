@@ -6,7 +6,7 @@ SECRET_KEY = "replace-me-with-your-own-secret-key"
 
 DEBUG = True  # На бою выставьте False
 ALLOWED_HOSTS = []  # Добавьте домены либо ['*'] для тестов во внутренней сети
-LOGIN_REDIRECT_URL  = 'portal:home'
+LOGIN_REDIRECT_URL = 'portal:home'
 LOGOUT_REDIRECT_URL = 'portal:home'
 
 # Подключённое приложение + стандартные Django-приложения
@@ -35,7 +35,7 @@ ROOT_URLCONF = "student_portal.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],   # ← глобальная папка шаблонов
+        "DIRS": [BASE_DIR / "templates"],  # ← глобальная папка шаблонов
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -73,18 +73,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = "ru"
 TIME_ZONE = "Europe/Moscow"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "portal" / "static"]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'portal' / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INSTALLED_APPS += ["widget_tweaks"]
 # Redirects
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "portal" / "static"]

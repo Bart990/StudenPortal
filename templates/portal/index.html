@@ -1,34 +1,49 @@
+{# portal/templates/index.html #}
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %}Главная{% endblock %}
 
-{% block content %}
-<div class="row">
-  <!-- Левая колонка: календарь Google -->
-  <div class="col-lg-8 mb-4">
-    <iframe
-      src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FMoscow"
-      style="border:0" width="100%" height="600" frameborder="0" scrolling="no">
-    </iframe>
-  </div>
 
-  <!-- Правая колонка: ближайшие мероприятия -->
-  <div class="col-lg-4">
-    <h4 class="mb-3">Ближайшие мероприятия</h4>
-    {% for ev in upcoming %}
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">{{ ev.title }}</h5>
-          <p class="card-text text-muted">
-            {{ ev.start_time|date:"d E Y, H:i" }}
-          </p>
-          <a class="btn btn-sm btn-outline-primary" href="{% url 'portal:event_detail' ev.id %}">
-            Подробнее
-          </a>
+{% block content %}
+    <div class="text-center my-4">
+        <a class="navbar-brand" href="https://www.rea.ru" target="_blank">
+            <img src="{% static 'portal/logo.png' %}" alt="Логотип РЭУ" height="100" style="margin-left: -73rem">
+        </a>
+    </div>
+
+    <div class="row">
+        <!-- колонка с Google-календарём -->
+        <div class="col-lg-8 mb-4">
+            <div class="ratio ratio-16x9 border rounded">
+                <iframe
+                        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FMoscow&showTitle=0&showPrint=0&showTabs=0&src=ru.russian%23holiday%40group.v.calendar.google.com&color=%230B8043"
+                        style="border:0" loading="lazy">
+                </iframe>
+            </div>
         </div>
-      </div>
-    {% empty %}
-      <p class="text-muted">Скоро здесь появятся мероприятия.</p>
-    {% endfor %}
-  </div>
-</div>
+
+        <!-- колонка новостей -->
+        <div class="col-lg-4">
+            <h4 class="mb-3">Последние новости</h4>
+            {% for n in news_list %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h6 class="card-title mb-1">
+                            <a href="{% url 'portal:news_detail' n.pk %}">{{ n.title }}</a>
+                        </h6>
+                        <p class="card-text small text-muted">
+                            {{ n.published|date:"d.m.Y H:i" }}
+                        </p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Новостей пока нет.</p>
+            {% endfor %}
+            <a class="btn btn-outline-primary w-100 mt-3"
+               href="{% url 'portal:news_list' %}">
+                Все новости
+            </a>
+        </div>
+    </div>
 {% endblock %}
