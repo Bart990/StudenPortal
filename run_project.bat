@@ -1,36 +1,45 @@
 @echo off
-rem ────────────────────────────────────────────────────────────
-rem  project_run.bat – быстрое поднятие портала под Windows
-rem  1) создаёт/активирует venv (.venv)
-rem  2) ставит зависимости (requirements.txt)
-rem  3) применяет миграции
-rem  4) запускает сервер  Django
-rem ────────────────────────────────────────────────────────────
+rem ─────────────────────────────────────────────────────────────
+rem run_project.bat  –  старт Django-проекта в Windows-окружении
+rem  usage:
+rem      run_project.bat          ← обычный дев-запуск
+rem      run_project.bat prod     ← + collectstatic
+rem ─────────────────────────────────────────────────────────────
 
-:: перейти в папку, где лежит bat-файл
-pushd "%~dp0"
+setlocal enabledelayedexpansion
+cd /d %~dp0
 
-:: 1. виртуальное окружение
-if not exist ".venv\Scripts\activate.bat" (
-    echo === Создаю виртуальное окружение ===
-    py -m venv .venv
+rem 1) виртуальное окружение
+set VENV=.venv
+if not exist "%VENV%\Scripts\python.exe" (
+    echo [info] Создаю виртуальное окружение...
+    py -3 -m venv %VENV%
 )
 
-call ".venv\Scripts\activate.bat"
+echo [info] Активирую виртуальное окружение...
+call "%VENV%\Scripts\activate.bat"
 
-:: 2. зависимости
-if exist "requirements.txt" (
-    echo === Устанавливаю зависимости ===
+rem 2) зависимости
+echo [info] Устанавливаю зависимости...
+if exist requirements.txt (
     pip install -r requirements.txt
+) else (
+    echo [warn] requirements.txt не найден – пропускаю установку пакетов.
 )
 
-:: 3. миграции
-echo === Применяю миграции ===
-python manage.py makemigrations
+rem 3) миграции
+echo [info] Применяю migrations...
 python manage.py migrate
 
-:: 4. запуск сервера
-echo === Старт сервера на http://127.0.0.1:8000/ ===
-python manage.py runserver 0.0.0.0:8000
+rem 4) статика (только если указан аргумент prod)
+if "%1"=="prod" (
+    echo [info] Собираю static-файлы...
+    python manage.py collectstatic --noinput
+)
 
-popd
+rem 5) запуск сервера
+echo [info] Запускаю Django-сервер http://127.0.0.1:8000
+python manage.py runserver
+
+endlocal
+pause
