@@ -44,9 +44,17 @@ def index(request):
 
 # ───────────── статические-пустышки ──────────────
 def page1(request): return render(request, 'page1.html')
+
+
 def page2(request): return render(request, 'page2.html')
+
+
 def page3(request): return render(request, 'page3.html')
+
+
 def page4(request): return render(request, 'page4.html')
+
+
 def page5(request): return render(request, 'page5.html')
 
 
@@ -187,3 +195,30 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'portal/password_change.html', {'form': form})
+
+# portal/views.py
+from django.shortcuts import render
+
+def unions_list(request):
+    """Вкладка со списком всех объединений Студсовета."""
+    unions = [
+        "Культурно-массовое направление",
+        "Культурно-Массовый комитет",
+        "Студенческое творческое общество",
+        "Спортивный комитет",
+        "Language Club",
+        "Клуб болельщиков",
+        "Социально-правовое направление",
+        "Комитет помощи студентам",
+        "Социальный комитет",
+        "Абитуриент-Club",
+        "Buddy System",
+        "Студенческий совет общежитий",
+        "Информационно-коммуникационное направление",
+        "Аналитический центр",
+        "First Fresh Media",
+        "Центр внешних связей и коммуникаций",
+        "IT-Center",
+        "Секретарская академия",
+    ]
+    return render(request, "portal/unions.html", {"unions": unions})

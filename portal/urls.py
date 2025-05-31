@@ -41,4 +41,6 @@ urlpatterns = [
     path("contacts/", TemplateView.as_view(template_name="contacts.html"), name="contacts"),
     path("about/",    TemplateView.as_view(template_name="about.html"),    name="about"),
     path("faq/",      TemplateView.as_view(template_name="faq.html"),      name="faq"),
+
+    path("unions/", views.unions_list, name="unions"),
 ]
