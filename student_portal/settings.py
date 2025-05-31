@@ -1,10 +1,14 @@
 from pathlib import Path
-
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "replace-me-with-your-own-secret-key"
 
-DEBUG = True  # На бою выставьте False
+DEBUG = os.getenv("DEBUG", "False") == "True"
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+STATIC_ROOT  = BASE_DIR / "staticfiles"
+MEDIA_ROOT   = BASE_DIR / "media"
+
 ALLOWED_HOSTS = []  # Добавьте домены либо ['*'] для тестов во внутренней сети
 LOGIN_REDIRECT_URL = 'portal:home'
 LOGOUT_REDIRECT_URL = 'portal:home'

@@ -1,0 +1,43 @@
+# .github/workflows/deploy.yml
+name: CI + Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install -r requirements.txt
+      - run: pytest
+
+  deploy:
+    needs: test               # выполнится только если test ✅
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy sources to VPS
+        uses: appleboy/scp-action@v0.1.1
+        with:
+          host:   ${{ secrets.HOST }}
+          username: portal
+          key:     ${{ secrets.SSH_KEY }}
+          source: "."
+          target: "/opt/portal"
+      - name: SSH → мигрируем и перезапускаем
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host:   ${{ secrets.HOST }}
+          username: portal
+          key:     ${{ secrets.SSH_KEY }}
+          script: |
+            cd /opt/portal &&
+            source venv/bin/activate &&
+            pip install -r requirements.txt &&
+            python manage.py migrate &&
+            python manage.py collectstatic --noinput &&
+            sudo systemctl restart portal
